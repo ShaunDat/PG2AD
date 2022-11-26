@@ -27,19 +27,10 @@
                         <div class="ibox-content">
 
                             <div class="table-responsive">
-                                <h2>Welcome to CHMSC Trainee Management System</h2>
-                                <h3>Mission</h3>
-                                <p>We are a GREEN institution committed to empower the youth and life-long learners who will contribute to nation building and global transformation through quality instruction, inclusive and creative teaching-learning pedagogies, relevant research, social innovation, dynamic partnership, and active civic engagement, in a conducive and fulfilling environment for trainees, faculty, staff, and partners.
-                                </p>
 
                             </div>
                             <div>
-                                <h3>Vision</h3>
-                                <p>GREEN CHMSC EXCELS
-
-To be a leading GREEN institution of higher learning in the global community by 2030
-
-GREEN stands for Good governance, Research-oriented, Extension-driven, Education for Sustainable Development and Nation Building</p>
+                               
                             </div>
                         </div>
                     </div>

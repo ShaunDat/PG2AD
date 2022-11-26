@@ -13,6 +13,15 @@ class Trainer extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function trainee()
+    {
+        return $this->hasOne(Trainee::class);
+    }
+
+    public function class()
+    {
+        return $this->belongsTo(AllClass::class);
+    }
 
     public function attendances(){
         return $this->hasMany(Attendance::class);

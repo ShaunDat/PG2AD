@@ -42,25 +42,20 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // hasOne (After create a user create Teacher, Parent, Student with user_id)
+    // hasOne (After create a user create Trainer, Parent, Trainee with user_id)
 
-    public function teacher()
+    public function trainer()
     {
-        return $this->hasOne(Teacher::class);
+        return $this->hasOne(Trainer::class);
     }
 
-    public function parent()
+    public function trainee()
     {
-        return $this->hasOne(AllParent::class);
-    }
-
-    public function student()
-    {
-        return $this->hasOne(Student::class);
+        return $this->hasOne(Trainee::class);
     }
 
     public function attendances()
     {
-        return $this->hasOne(Attendance::class, 'teacher_id');
+        return $this->hasOne(Attendance::class, 'trainee_id');
     }
 }
