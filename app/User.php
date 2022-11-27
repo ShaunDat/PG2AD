@@ -56,6 +56,6 @@ class User extends Authenticatable
 
     public function attendances()
     {
-        return $this->hasOne(Attendance::class, 'trainee_id');
+        return $this->hasOne(Attendance::class, 'trainee_id','trainer_id');
     }
 }

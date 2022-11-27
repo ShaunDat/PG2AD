@@ -55,7 +55,7 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label">Address<span class="required-star"> *</span></label>
                                 <div class="col-lg-10">
-                                    <input type="text" class="form-control" name="address" required>
+                                    <input type="text" class="form-control" name="address" value="{{ Auth()->user()->address }}" required>
                                 </div>
                             </div>
 

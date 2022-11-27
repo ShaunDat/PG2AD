@@ -17,6 +17,11 @@ class Trainer extends Model
     {
         return $this->hasOne(Trainee::class);
     }
+    public function trainer()
+    {
+        return $this->hasOne(Trainer::class);
+    }
+
 
     public function class()
     {
