@@ -18,16 +18,22 @@ Route::group(['middleware' => ['auth', 'preventBackHistory']], function (){
 
     Route::get('/', 'DashboardController@index');
 
-    Route::resource('class', 'ClassController');
+    Route::resource('course', 'CourseController');
+    Route::resource('topic', 'TopicController');
     Route::resource('trainers', 'TrainerController');
-    Route::get('trainees/get-trainee/{class}', 'TraineeController@getTrainee')->name('get-trainee');
+    Route::get('trainees/get-trainee/{course}', 'TraineeController@getTrainee')->name('get-trainee');
     Route::resource('trainees', 'TraineeController');
     Route::resource('attendances', 'AttendanceController');
 
-    //Class Routine.........
-    Route::get('class-routine', function (){
-        return view('class_routine.index');
-    })->name('class-routine.index');
+    //Course Routine.........
+    Route::get('course-routine', function (){
+        return view('course_routine.index');
+    })->name('course-routine.index');
+
+    //Topic Routine.........
+    Route::get('topic-routine', function (){
+        return view('topic_routine.index');
+    })->name('topic-routine.index');
 
     //Report................
     Route::get('reports', 'ReportController@index')->name('reports.index');

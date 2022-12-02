@@ -7,7 +7,7 @@
             <h2>All Role</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ route('class.index') }}">Role</a>
+                    <a href="{{ route('course.index') }}">Role</a>
                 </li>
                 <li class="active">
                     <strong>Index</strong>

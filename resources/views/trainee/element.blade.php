@@ -29,16 +29,16 @@
 </div>
 
 <div class="col-sm-6">
-    <div class="form-group"><label>Class<span class="required-star"> *</span></label>
+    <div class="form-group"><label>Course<span class="required-star"> *</span></label>
 
-        <select class="form-control" name="class_id" required>
+        <select class="form-control" name="course_id" required>
 
             <option value="">--Select--</option>
 
-            @foreach($classes as $class)
-                <option value="{{ $class->id }}"
-                    {{ (isset($trainee->class_id) AND $class->id == $trainee->class_id)?'selected':old('class_id') ==  $class->id  ? 'selected' : '' }}>
-                    {{ $class->name }}
+            @foreach($courses as $course)
+                <option value="{{ $course->id }}"
+                    {{ (isset($trainee->course_id) AND $course->id == $trainee->course_id)?'selected':old('course_id') ==  $course->id  ? 'selected' : '' }}>
+                    {{ $course->name }}
                 </option>
             @endforeach
 

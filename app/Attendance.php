@@ -11,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 class Attendance extends Model
 {
     protected $fillable = [
-        'trainer_id', 'class_id', 'trainee_id', 'attendance_date', 'attendance_status'
+        'trainer_id', 'course_id', 'trainee_id', 'attendance_date', 'attendance_status'
     ];
 
     public function user()
@@ -29,9 +29,9 @@ class Attendance extends Model
         return $this->belongsTo(Trainer::class);
     }*/
 
-    public function class()
+    public function course()
     {
-        return $this->belongsTo(AllClass::class);
+        return $this->belongsTo(AllCourse::class);
     }
 
     public function trainee()

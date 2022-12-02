@@ -4,10 +4,10 @@
 
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>Edit Class</h2>
+            <h2>Edit Topic</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ route('class.index') }}">Class</a>
+                    <a href="{{ route('topic.index') }}">Topic</a>
                 </li>
                 <li class="active">
                     <strong>Edit</strong>
@@ -17,7 +17,7 @@
         <div class="col-lg-2">
             <div class="ibox-tools">
                 <div class="ibox-tools  m-t-xl">
-                    <a href="{{ route('class.create') }}" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><i
+                    <a href="{{ route('topic.create') }}" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><i
                             class="fa fa-plus"></i> <strong>Create</strong></a>
                 </div>
             </div>
@@ -29,19 +29,19 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Edit class</h5>
+                        <h5>Edit topic</h5>
                     </div>
                     <div class="ibox-content">
 
-                        <form method="POST" action="{{ route('class.update', $class->id) }}" class="form-horizontal">
+                        <form method="POST" action="{{ route('topic.update', $topic->id) }}" class="form-horizontal">
                             {{ method_field('PUT') }}
                             @csrf()
 
-                            @include('class.element')
+                            @include('topic.element')
 
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
-                                    <a href="{{ route('class.index') }}" class="btn btn-sm btn-warning t m-t-n-xs"><strong>Cancel</strong></a>
+                                    <a href="{{ route('topic.index') }}" class="btn btn-sm btn-warning t m-t-n-xs"><strong>Cancel</strong></a>
                                     <button class="btn btn-sm btn-primary m-t-n-xs" type="submit">
                                         <strong>Submit</strong></button>
                                 </div>

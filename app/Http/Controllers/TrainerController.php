@@ -80,7 +80,8 @@ class TrainerController extends Controller
      */
     public function edit(Trainer $trainer)
     {
-        return view('trainer.edit', compact('trainer'));
+        $topics = AllTopic::latest()->get();
+        return view('trainer.edit', compact('trainer','topics'));
     }
 
     /**
@@ -130,5 +131,9 @@ class TrainerController extends Controller
             return back()->with('success', 'Trainer delete successfully');
         }
         return back()->with('warning', 'Trainer could not be delete');
+    }
+
+    function getTrainer($topic_id){
+        return Trainer::with('user')->where('topic_id', $topic_id)->latest()->get();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AllClass;
+use App\AllCourse;
 use App\Http\Requests\Trainee\TraineeStoreRequest;
 use App\Http\Requests\Trainee\TraineeUpdateRequest;
 use App\Trainee;
@@ -27,7 +27,7 @@ class TraineeController extends Controller
      */
     public function index()
     {
-        $trainees = Trainee::with('user', 'class')->latest()->get();
+        $trainees = Trainee::with('user', 'course')->latest()->get();
         return view('trainee.index', compact('trainees'));
     }
 
@@ -38,8 +38,8 @@ class TraineeController extends Controller
      */
     public function create()
     {
-        $classes = AllClass::latest()->get();
-        return view('trainee.create', compact('classes'));
+        $courses = AllCourse::latest()->get();
+        return view('trainee.create', compact('courses'));
     }
 
     /**
@@ -85,8 +85,8 @@ class TraineeController extends Controller
      */
     public function edit(Trainee $trainee)
     {
-        $classes = AllClass::latest()->get();
-        return view('trainee.edit', compact('trainee', 'classes'));
+        $courses = AllCourse::latest()->get();
+        return view('trainee.edit', compact('trainee', 'courses'));
     }
 
     /**
@@ -137,7 +137,7 @@ class TraineeController extends Controller
         return back()->with('warning', 'Trainee could not be delete');
     }
 
-    function getTrainee($class_id){
-        return Trainee::with('user')->where('class_id', $class_id)->latest()->get();
+    function getTrainee($course_id){
+        return Trainee::with('user')->where('course_id', $course_id)->latest()->get();
     }
 }

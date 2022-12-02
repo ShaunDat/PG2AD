@@ -8,7 +8,7 @@
                 <h2>Class Routine</h2>
                 <ol class="breadcrumb">
                     <li class="active">
-                        <a>Class Routine</a>
+                        <a>Course Routine</a>
                     </li>
                 </ol>
             </div>
@@ -19,7 +19,7 @@
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-                            <img class="img-responsive h-300" src="http://rc.edu.bd/notice_panel/rc/upload_notices/Class_Rutin1.jpg">
+                            <img class="img-responsive h-300" src="http://rc.edu.bd/notice_panel/rc/upload_notices/Course_Rutin1.jpg">
                         </div>
                     </div>
                 </div>

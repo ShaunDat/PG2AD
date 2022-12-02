@@ -19,8 +19,10 @@ class CreateTrainersTable extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->integer('topic_id');
             $table->string('phone')->unique();
-            $table->string('subject')->nullable();
+            $table->string('gender');
+            $table->date('date_of_birth')->nullable();
             $table->string('address')->nullable();
             $table->timestamps();
         });

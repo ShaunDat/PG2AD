@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\AllClass;
+use App\AllTopic;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
 
-class ClassController extends Controller
+class TopicController extends Controller
 {
     function __construct()
     {
@@ -21,8 +21,8 @@ class ClassController extends Controller
      */
     public function index()
     {
-        $class = AllClass::latest()->get();
-        return view('class.index', compact('class'));
+        $topic = AllTopic::latest()->get();
+        return view('topic.index', compact('topic'));
     }
 
     /**
@@ -32,7 +32,7 @@ class ClassController extends Controller
      */
     public function create()
     {
-        return view('class.create');
+        return view('topic.create');
     }
 
     /**
@@ -44,15 +44,15 @@ class ClassController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|unique:classes',
+            'name' => 'required|unique:topics',
         ]);
 
-        $create = AllClass::create($request->all());
+        $create = AllTopic::create($request->all());
 
         if ($create){
-            return redirect(route('class.index'))->with('success', 'Class create successfully');
+            return redirect(route('topic.index'))->with('success', 'Topic create successfully');
         }
-        return back()->with('warning', 'Class could not be create');
+        return back()->with('warning', 'Topic could not be create');
     }
 
     /**
@@ -69,51 +69,51 @@ class ClassController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param AllClass $class
+     * @param AllTopic $topic
      * @return Response
      */
-    public function edit(AllClass $class)
+    public function edit(AllTopic $topic)
     {
-        return view('class.edit', compact('class'));
+        return view('topic.edit', compact('topic'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param AllClass $class
+     * @param AllTopic $topic
      * @return void
      */
-    public function update(Request $request, AllClass $class)
+    public function update(Request $request, AllTopic $topic)
     {
         $request->validate([
-            'name' => 'required|unique:classes,name,'. $class->id,
+            'name' => 'required|unique:topics,name,'. $topic->id,
         ]);
 
-        $update = $class->update($request->all());
+        $update = $topic->update($request->all());
 
         if ($update){
-            return redirect(route('class.index'))->with('success', 'Class update successfully');
+            return redirect(route('topic.index'))->with('success', 'Topic update successfully');
         }
-        return back()->with('warning', 'Class could not be update');
+        return back()->with('warning', 'Topic could not be update');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param AllClass $class
+     * @param AllTopic $topic
      * @return Response
      * @throws \Exception
      */
-    public function destroy(AllClass $class)
+    public function destroy(AllTopic $topic)
     {
-        if ($class->attendances->count() > 0){
+        if ($topic->attendances->count() > 0){
             return back()->with('warning', 'Not allow to delete');
         }
 
-        if ($class->delete()){
-            return back()->with('success', 'Class delete successfully');
+        if ($topic->delete()){
+            return back()->with('success', 'Topic delete successfully');
         }
-        return back()->with('warning', 'Class could not be delete');
+        return back()->with('warning', 'Topic could not be delete');
     }
 }

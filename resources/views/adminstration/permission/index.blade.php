@@ -7,7 +7,7 @@
             <h2>All Permission</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ route('class.index') }}">Permission</a>
+                    <a href="{{ route('course.index') }}">Permission</a>
                 </li>
                 <li class="active">
                     <strong>Index</strong>
@@ -64,7 +64,7 @@
                                                     <!-- Modal Header -->
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Delete class</h4>
+                                                        <h4 class="modal-title">Delete course</h4>
                                                     </div>
 
                                                     <!-- Modal body -->
@@ -74,7 +74,7 @@
 
                                                         <a data-dismiss="modal" class="btn btn-sm btn-warning"><strong>No</strong></a>
                                                         <button class="btn btn-sm btn-primary" type="submit" onclick="event.preventDefault();
-                                                                document.getElementById('class-delete-form{{ $item->id }}').submit();">
+                                                                document.getElementById('course-delete-form{{ $item->id }}').submit();">
                                                             <strong>Yes</strong>
                                                         </button>
                                                     </div>
@@ -88,7 +88,7 @@
                                             </div>
                                         </div>
 
-                                        <form id="class-delete-form{{ $item->id }}" method="POST" action="{{ route('permissions.destroy', $item->id) }}" style="display: none" >
+                                        <form id="course-delete-form{{ $item->id }}" method="POST" action="{{ route('permissions.destroy', $item->id) }}" style="display: none" >
                                             {{method_field('DELETE')}}
                                             @csrf()
                                         </form>

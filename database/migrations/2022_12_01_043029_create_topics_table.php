@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAttendancesTable extends Migration
+class CreateTopicTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateAttendancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
+        Schema::create('topics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('trainer_id');
-            $table->unsignedBigInteger('course_id');
-            $table->unsignedBigInteger('trainee_id');
-            $table->date('attendance_date');
-            $table->boolean('attendance_status');
+            $table->string('name');
+            $table->string('note')->nullable();
+            $table->text('photo')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +29,6 @@ class CreateAttendancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('attendances');
+        Schema::dropIfExists('topics');
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AllClass;
+use App\AllCourse;
 use App\Attendance;
 use App\Trainer;
 use Barryvdh\DomPDF\Facade as PDF;
@@ -19,27 +19,27 @@ class ReportController extends Controller
     function index()
     {
         $trainers = Trainer::latest()->get();
-        $classes = AllClass::latest()->get();
+        $courses = AllCourse::latest()->get();
 
-        return view('report.create', compact('trainers', 'classes'));
+        return view('report.create', compact('trainers', 'courses'));
     }
 
     function create(Request $request)
     {
         $request->validate([
             'trainer_id' => 'required|numeric',
-            'class_id' => 'required|numeric',
-            'attendance_date' => 'required',
+            'course_id' => 'required|numeric',
+            'topic_date' => 'required',
         ]);
 
         $attendance_date = explode('/', $request->attendance_date);
         $month = $attendance_date[0];
         $year = $attendance_date[1];
 
-        $attendances = Attendance::with('user', 'userAsStudent.student', 'class', 'student')
+        $attendances = Attendance::with('user', 'userAsStudent.student', 'course', 'student')
             ->where('trainer_id', $request->trainer_id)
-            ->where('class_id', $request->class_id)
-            ->whereMonth('attendance_date', '=', $month)
+            ->where('course_id', $request->course_id)
+            ->whereMonth('topic_date', '=', $month)
             ->whereYear('attendance_date', '=', $year)
             ->latest()->get();
 

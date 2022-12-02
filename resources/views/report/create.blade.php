@@ -56,13 +56,13 @@
 
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <label>Class<span class="required-star"> *</span></label>
-                                        <select id="class" @change="setStudent" class="form-control" name="class_id" required>
+                                        <label>Course<span class="required-star"> *</span></label>
+                                        <select id="course" @change="setStudent" class="form-control" name="course_id" required>
 
                                             <option value="">--Select--</option>
-                                            @foreach($classes as $class)
-                                                <option {{ (isset($attendance->class->id) AND $attendance->class->id == $class->id)?'selected':''}} value="{{ $class->id }}">
-                                                    {{ ucfirst($class->name) }}
+                                            @foreach($courses as $course)
+                                                <option {{ (isset($attendance->course->id) AND $attendance->course->id == $course->id)?'selected':''}} value="{{ $course->id }}">
+                                                    {{ ucfirst($course->name) }}
                                                 </option>
                                             @endforeach
 

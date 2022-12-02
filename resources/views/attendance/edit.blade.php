@@ -58,8 +58,8 @@
             },
 
             mounted(){
-                class_id = $('#class').find(":selected").val();
-                this.getTrainer(class_id);
+                course_id = $('#course').find(":selected").val();
+                this.getTrainer(course_id);
 
                 //get current attendance trainee_id for selected
                 axios.get(home_url + '/attendances/'+$('#attandenec-id').val())
@@ -73,14 +73,14 @@
 
             methods:{
                 setTrainee(e){
-                    class_id = e.currentTarget.value;
-                    this.getTrainee(class_id); // class_id
+                    course_id = e.currentTarget.value;
+                    this.getTrainee(course_id); // course_id
                 },
 
-                getTrainee(class_id){
+                getTrainee(course_id){
                     currentApp = this;
 
-                    axios.get(home_url + '/trainees/get-trainee/'+class_id)
+                    axios.get(home_url + '/trainees/get-trainee/'+course_id)
                         .then(response => {
                             currentApp.trainees = response.data;
                         })

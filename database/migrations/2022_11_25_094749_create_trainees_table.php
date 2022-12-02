@@ -19,7 +19,7 @@ class CreateTraineesTable extends Migration
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            $table->integer('class_id');
+            $table->integer('course_id');
             $table->string('roll_number')->unique();
             $table->string('phone')->unique();
             $table->string('age');

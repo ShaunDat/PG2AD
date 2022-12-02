@@ -28,7 +28,7 @@ class TraineeStoreRequest extends FormRequest
             'roll_number' => 'required|numeric|unique:trainees',
             'phone' => 'required|numeric|unique:trainees',
             'email' => 'required|email|unique:users',
-            'class_id' => 'required|numeric',
+            'course_id' => 'required|numeric',
             'gender' => 'in:male,female,other',
             'password' => 'required|min:6',
             'age' => 'numeric|min:1',

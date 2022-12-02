@@ -3,25 +3,20 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Trainer extends Model
+/**
+ * @method static where(string $string, int $int)
+ */
+class Training extends Model
 {
-    protected $fillable = ['phone', 'subject', 'address'];
+    // protected $fillable = [
+    //      'course_id', 'roll_number', 'phone', 'age', 'gender', 'date_of_birth', 'address'
+    // ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function trainee()
-    {
-        return $this->hasOne(Trainee::class);
-    }
-    public function trainer()
-    {
-        return $this->hasOne(Trainer::class);
-    }
-
 
     public function course()
     {

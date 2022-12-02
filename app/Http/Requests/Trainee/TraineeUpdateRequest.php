@@ -32,7 +32,7 @@ class TraineeUpdateRequest extends FormRequest
             'roll_number' => 'required|numeric|unique:trainees,roll_number,'. $this->trainee,
             'phone' => 'required|numeric|unique:trainees,phone,'. $this->trainee,
             'email' => 'required|email|unique:users,email,'. $current_user->user_id,
-            'class_id' => 'required|numeric',
+            'course_id' => 'required|numeric',
             'gender' => 'in:male,female,other',
             'password' => 'nullable|min:6',
             'age' => 'numeric|min:1',

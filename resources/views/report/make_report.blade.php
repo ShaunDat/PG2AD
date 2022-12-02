@@ -19,7 +19,7 @@
                     <tr>
                         <th>Sl No</th>
                         <th>Trainee Name</th>
-                        <th>Class</th>
+                        <th>Course</th>
                         <th>Phone</th>
                         <th>Trainer</th>
                         <th>Date</th>
@@ -34,7 +34,7 @@
                         <tr>
                             <td>{{ $i }}</td>
                             <td>{{ ucfirst($item->user->name) }}</td>
-                            <td>{{ ucfirst($item->class->name) }}</td>
+                            <td>{{ ucfirst($item->course->name) }}</td>
                             <td>{{ $item->userAsStudent->student->phone }}</td>
                             <td>{{ ucfirst($item->user->name) }}</td>
                             <td>{{ date('d-m-Y', strtotime($item->attendance_date)) }}</td>

@@ -3,39 +3,23 @@
 @section('content')
 
     <div id="app">
-        <div class="row wrapper border-bottom success-bg page-heading">
+        <div class="row wrapper border-bottom white-bg page-heading">
             <div class="col-lg-10">
-                <h2>Dashboard</h2>
+                <h2>Class Routine</h2>
                 <ol class="breadcrumb">
-                    <li>
-                        <a>Dashboard</a>
-                    </li>
                     <li class="active">
-                        <strong>Home</strong>
+                        <a>Course Routine</a>
                     </li>
                 </ol>
             </div>
         </div>
 
         <div class="wrapper wrapper-content animated fadeInRight">
-
-            @include('partials.flash_messages.flashMessages')
-
             <div class="row">
                 <div class="col-lg-12">
                     <div class="ibox float-e-margins">
                         <div class="ibox-content">
-
-                            <div class="table-responsive">
-
-                            </div>
-                            @role('trainee')
-
-                            <h1>HI</h1>
-                            @endrole
-                            <div>
-                               
-                            </div>
+                            <img class="img-responsive h-300" src="http://rc.edu.bd/notice_panel/rc/upload_notices/Course_Rutin1.jpg">
                         </div>
                     </div>
                 </div>

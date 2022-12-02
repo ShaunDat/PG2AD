@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
 class Trainee extends Model
 {
     protected $fillable = [
-         'class_id', 'roll_number', 'phone', 'age', 'gender', 'date_of_birth', 'address'
+         'course_id', 'roll_number', 'phone', 'age', 'gender', 'date_of_birth', 'address'
     ];
 
     public function user()
@@ -18,9 +18,9 @@ class Trainee extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function class()
+    public function course()
     {
-        return $this->belongsTo(AllClass::class);
+        return $this->belongsTo(AllCourse::class);
     }
 
     public function attendances(){

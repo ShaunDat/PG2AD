@@ -9,13 +9,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static create(array $all)
  * @method static latest()
  */
-class AllClass extends Model
+class AllTopic extends Model
 {
-    protected $table = 'classes';
+    protected $table = 'topics';
 
     protected $fillable = ['name', 'note'];
 
     public function attendances(){
-        return $this->hasMany(Attendance::class, 'class_id');
+        return $this->hasMany(Attendance::class, 'topic_id');
     }
 }
