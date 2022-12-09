@@ -1,6 +1,5 @@
 
 @include('partials.flash_messages.flashMessages')
-@role('training')
 <div class="form-group">
     <label class="col-lg-2 control-label">Name<span class="required-star"> *</span></label>
     <div class="col-lg-10">
@@ -25,4 +24,3 @@
     <input id="thumbnail" class="form-control" type="file" name="photo" value="{{old('photo')}}">
   </div>
 </div>
-@endrole

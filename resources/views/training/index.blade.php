@@ -1,13 +1,13 @@
 @extends('layouts.master')
 
 @section('content')
-@role('training')
+
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
-            <h2>All Topic</h2>
+            <h2>All Training</h2>
             <ol class="breadcrumb">
                 <li>
-                    <a href="{{ route('topic.index') }}">Topic</a>
+                    <a href="{{ route('trainings.index') }}">Training</a>
                 </li>
                 <li class="active">
                     <strong>Index</strong>
@@ -16,11 +16,11 @@
         </div>
         <div class="col-lg-2">
             <div class="ibox-tools m-t-xl">
-                <a href="{{ route('topic.create') }}" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><i class="fa fa-plus"></i> <strong>Create</strong></a>
+                <a href="{{ route('trainings.create') }}" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><i class="fa fa-plus"></i> <strong>Create</strong></a>
             </div>
         </div>
     </div>
-@endrole
+
     <div class="wrapper wrapper-content animated fadeInRight">
 
         @include('partials.flash_messages.flashMessages')
@@ -29,7 +29,7 @@
             <div class="col-lg-12">
                 <div class="ibox float-e-margins">
                     <div class="ibox-title">
-                        <h5>Topic</h5>
+                        <h5>Training</h5>
                     </div>
 
                     <div class="ibox-content">
@@ -39,23 +39,41 @@
                                 <tr>
                                     <th>Sl No</th>
                                     <th>Name</th>
-                                    <th>Note</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Topics</th>
+                                    <th>Address</th>
+                                    <th>User Role</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>
                                 <tbody>
 
                                 @php($i=1)
-                                @foreach ($topic as $item)
+                                @foreach ($trainings as $item)
 
                                     <tr>
                                         <td>{{ $i }}</td>
-                                        <td>{{ ucfirst($item->name) }}</td>
-                                        <td> {{ ucfirst($item->note) }}</td>
+                                        <td>{{ ucfirst($item->user->name) }}</td>
+                                        <td>{{ $item->user->email }}</td>
+                                        <td>{{ $item->phone }}</td>
+                                        <td>{{ ucfirst($item->topics->name) }}</td>
+                                        <td>{{ ucfirst($item->address) }}</td>
 
                                         <td>
-                                            <a title="Edit" href="{{ route('topic.edit', $item->id) }}" class="cus_mini_icon color-success"> <i class="fa fa-pencil-square-o"></i></a>
+                                            @if(!empty($item->user->getRoleNames()))
+                                                @foreach($item->user->getRoleNames() as $roleName)
+                                                    <label class="badge badge-primary">{{ $roleName }}</label>
+                                                @endforeach
+                                            @endif
+                                        </td>
+
+                                        <td>
+                                            @can('add course')
+                                            <a title="Assign role" href="{{ route('assign-role.edit', $item->user->id) }}" class="cus_mini_icon color-success"> <i class="fa fa-user-plus" aria-hidden="true"></i></a>
+                                            <a title="Edit" href="{{ route('trainings.edit', $item->id) }}" class="cus_mini_icon color-success"> <i class="fa fa-pencil-square-o"></i></a>
                                             <a title="Delete" data-toggle="modal" data-target="#myModal{{$item->id}}" type="button" class="cus_mini_icon color-danger"><i class="fa fa-trash"></i></a>
+                                            @endcan
                                         </td>
 
                                         <!-- The Modal -->
@@ -66,7 +84,7 @@
                                                     <!-- Modal Header -->
                                                     <div class="modal-header">
                                                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        <h4 class="modal-title">Delete topic</h4>
+                                                        <h4 class="modal-title">Delete Training</h4>
                                                     </div>
 
                                                     <!-- Modal body -->
@@ -76,7 +94,7 @@
 
                                                         <a data-dismiss="modal" class="btn btn-sm btn-warning"><strong>No</strong></a>
                                                         <button class="btn btn-sm btn-primary" type="submit" onclick="event.preventDefault();
-                                                                document.getElementById('topic-delete-form{{ $item->id }}').submit();">
+                                                                document.getElementById('class-delete-form{{ $item->id }}').submit();">
                                                             <strong>Yes</strong>
                                                         </button>
                                                     </div>
@@ -90,7 +108,7 @@
                                             </div>
                                         </div>
 
-                                        <form id="topic-delete-form{{ $item->id }}" method="POST" action="{{ route('topic.destroy', $item->id) }}" style="display: none" >
+                                        <form id="class-delete-form{{ $item->id }}" method="POST" action="{{ route('trainings.destroy', $item->id) }}" style="display: none" >
                                             {{method_field('DELETE')}}
                                             @csrf()
                                         </form>

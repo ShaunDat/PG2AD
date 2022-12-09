@@ -17,7 +17,7 @@ class TraineeController extends Controller
 {
     function __construct()
     {
-        $this->middleware('role:admin')->except('getTrainee');
+        $this->middleware('role:admin|training')->except('getTrainee');
     }
 
     /**

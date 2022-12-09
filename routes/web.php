@@ -53,6 +53,8 @@ Route::group(['middleware' => ['auth', 'preventBackHistory']], function (){
     Route::get('assign-roles/{user}','Adminstration\AssignRoleController@edit')->name('assign-role.edit');
     Route::post('assign-roles/{user}','Adminstration\AssignRoleController@update')->name('assign-role.update');
 
+    Route::resource('index','UserController');
+
 });
 
 

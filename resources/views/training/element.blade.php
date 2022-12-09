@@ -4,21 +4,21 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">Name<span class="required-star"> *</span></label>
     <div class="col-lg-10">
-        <input value="{{ isset($trainer->user->name) ? $trainer->user->name:'' }}" required="required" name="name" type="text" class="form-control">
+        <input value="{{ isset($training->user->name) ? $training->user->name:'' }}" required="required" name="name" type="text" class="form-control">
     </div>
 </div>
 
 <div class="form-group">
     <label class="col-lg-2 control-label">Email<span class="required-star"> *</span></label>
     <div class="col-lg-10">
-        <input value="{{ isset($trainer->user->email) ? $trainer->user->email:'' }}" required="required" name="email" type="email" class="form-control">
+        <input value="{{ isset($training->user->email) ? $training->user->email:'' }}" required="required" name="email" type="email" class="form-control">
     </div>
 </div>
 
 <div class="form-group">
     <label class="col-lg-2 control-label">Phone<span class="required-star"> *</span></label>
     <div class="col-lg-10">
-        <input value="{{ isset($trainer->phone) ? $trainer->phone:'' }}" required="required" name="phone" type="text" class="form-control">
+        <input value="{{ isset($training->phone) ? $training->phone:'' }}" required="required" name="phone" type="text" class="form-control">
     </div>
 </div>
 
@@ -32,7 +32,7 @@
 <div class="form-group">
     <label class="col-lg-2 control-label">Address</label>
     <div class="col-lg-10">
-        <input value="{{ isset($trainer->address) ? $trainer->address:'' }}" name="address" type="text" class="form-control">
+        <input value="{{ isset($training->address) ? $training->address:'' }}" name="address" type="text" class="form-control">
     </div>
 </div>
 
@@ -58,12 +58,12 @@
         <option value="">--Select--</option>
         @foreach($topics as $topic)
         <option value="{{ $topic->id }}"
-            {{ (isset($trainer->topic_id) AND $topic->id == $trainer->topic_id)?'selected':old('topic_id') ==  $topic->id  ? 'selected' : '' }}>
+            {{ (isset($training->topic_id) AND $topic->id == $training->topic_id)?'selected':old('topic_id') ==  $topic->id  ? 'selected' : '' }}>
             {{ $topic->name }}
         </option>
         @endforeach
         </select> --}}
-        <input value="{{ isset($trainer->topic_id) ? $topic->id:'' }}" name="topic_id" type="text" class="form-control">
+        <input value="{{ isset($training->topic_id) ? $topic->id:'' }}" name="topic_id" type="text" class="form-control">
 
     </div>
 </div>

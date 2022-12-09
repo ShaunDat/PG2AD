@@ -6,6 +6,7 @@ use App\Http\Requests\Trainer\TrainerStoreRequest;
 use App\Http\Requests\Trainer\TrainerUpdateRequest;
 use App\Trainer;
 use App\User;
+use App\AllTopic;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -14,7 +15,7 @@ class TrainerController extends Controller
 {
     function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware('role:admin|training')->except('getTrainer');
     }
 
     /**
@@ -24,7 +25,7 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        $trainers = Trainer::with('user')->latest()->get();
+        $trainers = Trainer::with('user','topics')->latest()->get();
         return view('trainer.index', compact('trainers'));
     }
 
@@ -35,7 +36,8 @@ class TrainerController extends Controller
      */
     public function create()
     {
-        return view('trainer.create');
+        $topics = AllTopic::latest()->get();
+        return view('trainer.create',compact('topics'));
     }
 
     /**

@@ -1,7 +1,6 @@
 @extends('layouts.master')
 
 @section('content')
-@role('training')
     <div class="row wrapper border-bottom white-bg page-heading">
         <div class="col-lg-10">
             <h2>All Course</h2>
@@ -110,5 +109,4 @@
             </div>
         </div>
     </div>
-@endrole
 @endsection()

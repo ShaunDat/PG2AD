@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Trainer extends Model
 {
-    protected $fillable = ['phone', 'subject', 'address'];
+    protected $fillable = ['topic_id','phone','gender','date_of_birth','address'];
 
     public function user()
     {
@@ -23,9 +23,9 @@ class Trainer extends Model
     }
 
 
-    public function course()
+    public function topics()
     {
-        return $this->belongsTo(AllCourse::class);
+        return $this->belongsTo('App\AllTopic', 'topic_id');
     }
 
     public function attendances(){

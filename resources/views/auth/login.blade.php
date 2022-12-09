@@ -6,12 +6,6 @@
 
             <h3 class="border-bottom">LOGIN</h3>
 
-            <!-- <div>
-                <p>Admin : admin@test.com - 12345678</p>
-                <p>Teacher : teacher@test.com - 12345678</p>
-                <p>Student : student@test.com - 12345678</p>
-            </div> -->
-
             <form class="m-t" role="form" action="{{ route('login') }}" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
@@ -34,19 +28,11 @@
                     @endif
                 </div>
 
-                {{--<div class="col-lg-offset-2 col-lg-10">
-                    <div class="i-checks"><label> <input name="remember" {{ old('remember') ? 'checked' : '' }} id="remember" type="checkbox"><i></i> Remember me </label></div>
-                </div>--}}
-
                 <button type="submit" class="btn btn-danger block full-width m-b">Login</button>
 
                 <a href="{{ route('password.request') }}">
                     <small>Forgot password?</small>
                 </a>
-                {{--<p class="text-muted text-center">
-                    <small>Do not have an account?</small>
-                </p>
-                <a class="btn btn-sm btn-white btn-block" href="register.html">Create an account</a>--}}
             </form>
 
         </div>

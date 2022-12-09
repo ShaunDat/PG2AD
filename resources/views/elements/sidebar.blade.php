@@ -62,6 +62,10 @@
                 </li>
 
 
+                {{-- <li class="{{ (currentController() == 'UserController')? 'active':'' }}">
+                    <a href="{{ route('trainings.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">Training</span> </a>
+                </li> --}}
+
                 <li class="{{ (currentController() == 'TrainerController')? 'active':'' }}">
                     <a href="{{ route('trainers.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">Trainer</span> </a>
                 </li>
@@ -77,14 +81,12 @@
             @endrole
 
             @role('training')
-                <li class="{{ (currentController() == 'ClassController')? 'active':'' }}">
+                <li class="{{ (currentController() == 'CourseController')? 'active':'' }}">
                     <a href="{{ route('course.index') }}"><i class="fa fa-th" aria-hidden="true"></i> <span class="nav-label">Course</span> </a>
                 </li>
-
-                <li class="{{ (currentController() == 'ClassController')? 'active':'' }}">
+                <li class="{{ (currentController() == 'TopicController')? 'active':'' }}">
                     <a href="{{ route('topic.index') }}"><i class="fa fa-th" aria-hidden="true"></i> <span class="nav-label">Topic</span> </a>
                 </li>
-                
                 <li class="{{ (currentController() == 'TrainerController')? 'active':'' }}">
                     <a href="{{ route('trainers.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">Trainer</span> </a>
                 </li>
@@ -97,7 +99,7 @@
                     <a href="{{ route('reports.index') }}"><i class="fa fa-child" aria-hidden="true"></i> <span class="nav-label">Report</span> </a>
                 </li>
 
-            @endrole
+                @endrole
 
             @role('trainer')
 
