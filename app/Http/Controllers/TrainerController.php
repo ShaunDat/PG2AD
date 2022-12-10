@@ -7,6 +7,7 @@ use App\Http\Requests\Trainer\TrainerUpdateRequest;
 use App\Trainer;
 use App\User;
 use App\AllTopic;
+use App\AllCourse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
@@ -15,7 +16,7 @@ class TrainerController extends Controller
 {
     function __construct()
     {
-        $this->middleware('role:admin|training')->except('getTrainer');
+        $this->middleware('role:admin|trainer')->except('getTrainer');
     }
 
     /**

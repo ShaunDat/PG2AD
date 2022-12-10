@@ -14,9 +14,11 @@
             </ol>
         </div>
         <div class="col-lg-2">
+            @unlessrole('trainee')
             <div class="ibox-tools m-t-xl">
                 <a href="{{ route('course.create') }}" class="btn btn-sm btn-primary pull-right m-t-n-xs" type="submit"><i class="fa fa-plus"></i> <strong>Create</strong></a>
             </div>
+            @endunlessrole
         </div>
     </div>
 
@@ -39,7 +41,9 @@
                                     <th>Sl No</th>
                                     <th>Name</th>
                                     <th>Note</th>
+                                    @unlessrole('trainee')
                                     <th>Actions</th>
+                                    @endunlessrole
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -51,12 +55,12 @@
                                         <td>{{ $i }}</td>
                                         <td>{{ ucfirst($item->name) }}</td>
                                         <td> {{ ucfirst($item->note) }}</td>
-
+                                        @unlessrole('trainee')
                                         <td>
                                             <a title="Edit" href="{{ route('course.edit', $item->id) }}" class="cus_mini_icon color-success"> <i class="fa fa-pencil-square-o"></i></a>
                                             <a title="Delete" data-toggle="modal" data-target="#myModal{{$item->id}}" type="button" class="cus_mini_icon color-danger"><i class="fa fa-trash"></i></a>
                                         </td>
-
+                                        @endunlessrole
                                         <!-- The Modal -->
                                         <div class="modal fade in" id="myModal{{$item->id}}">
                                             <div class="modal-dialog">

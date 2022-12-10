@@ -11,7 +11,7 @@ class TopicController extends Controller
 {
     function __construct()
     {
-        $this->middleware('role:training');
+        $this->middleware('role:admin|training|trainer');
     }
 
     /**

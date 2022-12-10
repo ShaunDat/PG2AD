@@ -106,25 +106,20 @@
             <li class="{{ (currentController() == 'TraineeController')? 'active':'' }}">
                 <a href="{{ route('trainees.index') }}"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <span class="nav-label">Trainee</span> </a>
             </li>
-
-            <li class="{{ (currentController() == 'ClassController')? 'active':'' }}">
-                <a href="{{ route('course.index') }}"><i class="fa fa-th" aria-hidden="true"></i> <span class="nav-label">Course</span> </a>
+            <li class="{{ (currentController() == 'TopicController')? 'active':'' }}">
+                <a href="{{ route('topic.index') }}"><i class="fa fa-th" aria-hidden="true"></i> <span class="nav-label">Topic</span> </a>
             </li>
-            
             <li class="{{ (currentController() == 'ReportController')? 'active':'' }}">
                 
                 <a href="{{ route('reports.index') }}"><i class="fa fa-child" aria-hidden="true"></i> <span class="nav-label">Report</span> </a>
             </li>
-            
-            <li class="{{ (Route::getFacadeRoot()->current()->uri() == 'course-routine')? 'active':'' }}">
-                <a href="{{ route('course-routine.index') }}"><i class="fa fa-child" aria-hidden="true"></i> <span class="nav-label">Course Routine</span> </a>
-            </li>
+
             @endrole
             
             @role('trainee')
-                <li class="{{ (Route::getFacadeRoot()->current()->uri() == 'course-routine')? 'active':'' }}">
-                    <a href="{{ route('course-routine.index') }}"><i class="fa fa-child" aria-hidden="true"></i> <span class="nav-label">Course Routine</span> </a>
-                </li>
+            <li class="{{ (currentController() == 'CourseController')? 'active':'' }}">
+                <a href="{{ route('course.index') }}"><i class="fa fa-th" aria-hidden="true"></i> <span class="nav-label">Course</span> </a>
+            </li>   
             @endrole
         </ul>
 
