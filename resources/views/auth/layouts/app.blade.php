@@ -1,40 +1,35 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-    <head>
+    <link rel="stylesheet" href="{{asset('logincss/fonts/icomoon/style.css')}}">
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{asset('logincss/css/owl.carousel.min.css')}}">
 
-        <title>LSMS | Login</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{asset('logincss/css/bootstrap.min.css')}}">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="{{asset('logincss/css/style.css')}}">
 
-        <link href="{{ asset('inspinia/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('inspinia/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
-        <link href="{{ asset('inspinia/css/plugins/iCheck/custom.css') }}" rel="stylesheet">
-        <link href="{{ asset('inspinia/css/animate.css') }}" rel="stylesheet">
-        <link href="{{ asset('inspinia/css/style.css') }}" rel="stylesheet">
-        <link href="{{ asset('inspinia/css/custom_style.css') }}" rel="stylesheet">
+    <title>Studen management</title>
+  </head>
+  <body>
+  
 
-    </head>
+  
+  <div class="content">
+   @yield('content')
+  </div>
 
-    <body class="gray-bg">
-
-        @yield('content')
-
-        <!-- Mainly scripts -->
-        <script src="{{ asset('inspinia/js/jquery-3.1.1.min.js') }} "></script>
-        <script src="{{ asset('inspinia/js/bootstrap.min.js') }} "></script>
-
-        <!-- iCheck -->
-        <script src="{{ asset('inspinia/js/plugins/iCheck/icheck.min.js') }}"></script>
-        <script>
-            $(document).ready(function () {
-                $('.i-checks').iCheck({
-                    checkboxClass: 'icheckbox_square-green',
-                    radioClass: 'iradio_square-green',
-                });
-            });
-        </script>
-    </body>
-
+  
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/main.js"></script>
+  </body>
 </html>
