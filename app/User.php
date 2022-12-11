@@ -57,6 +57,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Training::class);
     }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
     public function attendances()
     {

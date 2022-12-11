@@ -13,7 +13,7 @@ class AssignRoleController extends Controller
 {
     function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware('role:admin|training|trainer');
     }
 
     function edit($id){

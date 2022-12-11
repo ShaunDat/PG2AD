@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\AllClass;
+use App\AllCourse;
 use App\Attendance;
 use App\Trainee;
 use App\Trainer;
@@ -17,7 +17,7 @@ class AttendanceController extends Controller
      */
     function __construct()
     {
-        $this->middleware('role:trainer|trainee|admin');
+        $this->middleware('role:trainer|trainee|admin|training');
         $this->middleware(['role:trainer', 'permission:attendance-edit'], ['only' => 'show']);
         $this->middleware('permission:attendance-list', ['only' => 'index']);
         $this->middleware(['role:trainer', 'permission:attendance-create'], ['only' => ['store']]);
@@ -28,11 +28,14 @@ class AttendanceController extends Controller
     public function index()
     {
         $trainers = Trainer::latest()->get();
-        $classes = AllClass::latest()->get();
+        $coursees = AllCourse::latest()->get();
 
         if (Auth()->user()->hasRole('admin')) {
             $attendances = Attendance::with('user', 'user.trainer', 'class', 'userAsTrainee.trainee')->latest()->get();
 
+        } else if (Auth()->user()->hasRole('training')) {
+            $attendances = Attendance::with('user', 'user.trainer', 'class', 'userAsTraining.training')->latest()->where('training_id', Auth()->user()->id)->get();
+        
         } else if (Auth()->user()->hasRole('trainee')) {
             $attendances = Attendance::with('user', 'user.trainer', 'class', 'userAsTrainee.trainee')->latest()->where('trainee_id', Auth()->user()->id)->get();
 
@@ -40,7 +43,7 @@ class AttendanceController extends Controller
             $attendances = Attendance::with('user', 'user.trainer', 'class', 'userAsTrainee.trainee')->latest()->where('trainer_id', Auth()->user()->id)->get();
         }
 
-        return view('attendance.index', compact('attendances', 'trainers', 'classes'));
+        return view('attendance.index', compact('attendances', 'trainers', 'courses'));
     }
 
     /**
@@ -62,14 +65,14 @@ class AttendanceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'class_id' => 'required|numeric',
+            'course_id' => 'required|numeric',
             'trainee_id' => 'required|numeric',
             'attendance_date' => 'required|date',
             'attendance_status' => 'required|boolean',
         ]);
 
         $already_attendance = Attendance::where('trainer_id', Auth()->user()->id)
-        ->where('class_id', $request->class_id)
+        ->where('course_id', $request->course_id)
         ->where('trainee_id', $request->trainee_id)
         ->where('attendance_date', $request->attendance_date)
         ->first();
@@ -105,12 +108,12 @@ class AttendanceController extends Controller
     public function edit(Attendance $attendance)
     {
         $trainers = Trainer::latest()->get();
-        $classes = AllClass::latest()->get();
+        $coursees = AllCourse::latest()->get();
         $trainees = Trainee::latest()->get();
 
         //dd($attendance->trainer->toArray());
 
-        return view('attendance.edit', compact('attendance', 'trainers', 'classes', 'trainees'));
+        return view('attendance.edit', compact('attendance', 'trainers', 'coursees', 'trainees'));
     }
 
     /**
@@ -123,14 +126,14 @@ class AttendanceController extends Controller
     public function update(Request $request, Attendance $attendance)
     {
         $request->validate([
-            'class_id' => 'required|numeric',
+            'course_id' => 'required|numeric',
             'trainee_id' => 'required|numeric',
             'attendance_date' => 'required|date',
             'attendance_status' => 'required|boolean',
         ]);
 
         $already_attendance = Attendance::where('trainer_id', Auth()->user()->id)
-            ->where('class_id', $request->class_id)
+            ->where('course_id', $request->course_id)
             ->where('trainee_id', $request->trainee_id)
             ->where('attendance_date', $request->attendance_date)
             ->where('id', '!=', $attendance->id)

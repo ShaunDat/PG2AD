@@ -43,7 +43,7 @@
                                     <th>Phone</th>
                                     <th>Topics</th>
                                     <th>Address</th>
-                                    <th>User Role</th>
+                                    <th>Trainer Role</th>
                                     <th>Actions</th>
                                 </tr>
                                 </thead>

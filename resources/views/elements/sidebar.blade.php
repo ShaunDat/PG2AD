@@ -66,12 +66,8 @@
                     <a href="{{ route('trainings.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">Training</span> </a>
                 </li> --}}
 
-                <li class="{{ (currentController() == 'TrainerController')? 'active':'' }}">
-                    <a href="{{ route('trainers.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">Trainer</span> </a>
-                </li>
-
-                <li class="{{ (currentController() == 'TraineeController')? 'active':'' }}">
-                    <a href="{{ route('trainees.index') }}"><i class="fa fa-graduation-cap" aria-hidden="true"></i> <span class="nav-label">Trainee</span> </a>
+                <li class="{{ (currentController() == 'UserController')? 'active':'' }}">
+                    <a href="{{ route('users.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">User</span> </a>
                 </li>
 
                 <li class="{{ (currentController() == 'ReportController')? 'active':'' }}">

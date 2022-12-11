@@ -55,6 +55,9 @@ Route::group(['middleware' => ['auth', 'preventBackHistory']], function (){
 
     Route::resource('index','UserController');
 
+    // User
+    Route::resource('users','UserController');
+
 });
 
 

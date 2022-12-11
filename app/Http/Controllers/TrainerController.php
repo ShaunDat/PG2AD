@@ -16,7 +16,7 @@ class TrainerController extends Controller
 {
     function __construct()
     {
-        $this->middleware('role:admin|trainer')->except('getTrainer');
+        $this->middleware('role:admin|trainer|training')->except('getTrainer');
     }
 
     /**
