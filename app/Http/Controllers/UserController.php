@@ -35,7 +35,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $Users = User::latest()->get();
+        $users = User::latest()->get();
         return view('users.create',compact('user'));
     }
 
@@ -47,12 +47,12 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password)
         ]);
-
+        return redirect(route('users.index'))->with('success', 'User create successfully');
     }
     /**
      * Display the specified resource.
