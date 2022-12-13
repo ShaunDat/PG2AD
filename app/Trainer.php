@@ -27,9 +27,4 @@ class Trainer extends Model
     {
         return $this->belongsTo('App\AllTopic', 'topic_id');
     }
-
-
-    public function attendances(){
-        return $this->hasMany(Attendance::class);
-    }
 }

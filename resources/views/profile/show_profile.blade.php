@@ -76,7 +76,7 @@
                                         <option value="other" {{ (isset($student->gender) AND $student->gender == 'other') ? 'selected':old('gender') ==  'other'?'selected' : '' }}>Other</option>
                                     </select>
                                 </div>
-                            </div>--}}
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">

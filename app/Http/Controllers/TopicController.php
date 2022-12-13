@@ -107,9 +107,6 @@ class TopicController extends Controller
      */
     public function destroy(AllTopic $topic)
     {
-        if ($topic->attendances->count() > 0){
-            return back()->with('warning', 'Not allow to delete');
-        }
 
         if ($topic->delete()){
             return back()->with('success', 'Topic delete successfully');

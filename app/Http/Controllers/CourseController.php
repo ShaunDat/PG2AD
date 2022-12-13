@@ -107,10 +107,6 @@ class CourseController extends Controller
      */
     public function destroy(AllCourse $course)
     {
-        if ($course->attendances->count() > 0){
-            return back()->with('warning', 'Not allow to delete');
-        }
-
         if ($course->delete()){
             return back()->with('success', 'Course delete successfully');
         }

@@ -22,8 +22,4 @@ class Trainee extends Model
     {
         return $this->belongsTo(AllCourse::class);
     }
-
-    public function attendances(){
-        return $this->hasMany(Attendance::class);
-    }
 }
