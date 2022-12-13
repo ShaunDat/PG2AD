@@ -20,6 +20,9 @@ Route::group(['middleware' => ['auth', 'preventBackHistory']], function (){
 
     Route::resource('course', 'CourseController');
     Route::resource('topic', 'TopicController');
+    
+    Route::resource('category', 'CategoryController');
+
     Route::resource('trainers', 'TrainerController');
     Route::get('trainees/get-trainee/{course}', 'TraineeController@getTrainee')->name('get-trainee');
     Route::resource('trainees', 'TraineeController');

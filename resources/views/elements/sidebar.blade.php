@@ -83,6 +83,9 @@
                 <li class="{{ (currentController() == 'TopicController')? 'active':'' }}">
                     <a href="{{ route('topic.index') }}"><i class="fa fa-th" aria-hidden="true"></i> <span class="nav-label">Topic</span> </a>
                 </li>
+                <li class="{{ (currentController() == 'CategoryController')? 'active':'' }}">
+                    <a href="{{ route('category.index') }}"><i class="fa fa-th" aria-hidden="true"></i> <span class="nav-label">Category</span> </a>
+                </li>
                 <li class="{{ (currentController() == 'TrainerController')? 'active':'' }}">
                     <a href="{{ route('trainers.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">Trainer</span> </a>
                 </li>
