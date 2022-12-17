@@ -165,7 +165,7 @@ class UserController extends Controller
     function updatePassword(Request $request){
 
         $this->validate($request, [
-            'password' => 'required|min:8|confirmed'
+            'password' => 'required|min:6|confirmed'
         ]);
 
         $data = [];

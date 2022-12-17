@@ -45,7 +45,7 @@ class CourseController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:courses',
-            'photo'=>'required|string:courses',
+            // 'photo'=>'required|string:courses',
         ]);
 
         $create = AllCourse::create($request->all());
