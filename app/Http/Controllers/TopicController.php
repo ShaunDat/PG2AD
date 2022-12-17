@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\AllTopic;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\DB;
 
 class TopicController extends Controller
 {
@@ -24,6 +27,10 @@ class TopicController extends Controller
         $topic = AllTopic::latest()->get();
         return view('topic.index', compact('topic'));
     }
+
+    // public function topictrainer(){
+
+    // }
 
     /**
      * Show the form for creating a new resource.
@@ -61,9 +68,17 @@ class TopicController extends Controller
      * @param  int  $id
      * @return Response
      */
-    public function show($id)
+    public function show()
     {
-        //
+        if(Auth::check()) {
+            $id = Auth::user()->id;
+        }
+        $topic = DB::table('topics')
+        ->join('trainers', 'trainers.topic_id', '=','topics.id')
+        ->join('users', 'users.id','=','trainers.user_id')
+        ->get('topics.*');
+        return view('topic.trainer', compact('topic'));
+        dd($topic);
     }
 
     /**
@@ -107,10 +122,9 @@ class TopicController extends Controller
      */
     public function destroy(AllTopic $topic)
     {
-
         if ($topic->delete()){
             return back()->with('success', 'Topic delete successfully');
         }
-        return back()->with('warning', 'Topic could not be delete');
+        return back()->with('warning', 'Topic could not be delete'); 
     }
 }

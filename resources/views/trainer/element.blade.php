@@ -41,30 +41,28 @@
     <div class="col-lg-10">
         <select class="form-control m-b" name="gender" required>
             <option value="">--Select--</option>
-            <option value="male" {{ (isset($trainee->gender) AND $trainee->gender == 'male') ? 'selected':old('gender') ==  'male'?'selected' : '' }}
+            <option value="male" {{ (isset($trainer->gender) AND $trainer->gender == 'male') ? 'selected':old('gender') ==  'male'?'selected' : '' }}
             >Male</option>
-            <option value="female" {{ (isset($trainee->gender) AND $trainee->gender == 'female') ? 'selected':old('gender') ==  'female'?'selected' : '' }}
+            <option value="female" {{ (isset($trainer->gender) AND $trainer->gender == 'female') ? 'selected':old('gender') ==  'female'?'selected' : '' }}
             >Female</option>
-            <option value="other" {{ (isset($trainee->gender) AND $trainee->gender == 'other') ? 'selected':old('gender') ==  'other'?'selected' : '' }}
+            <option value="other" {{ (isset($trainer->gender) AND $trainer->gender == 'other') ? 'selected':old('gender') ==  'other'?'selected' : '' }}
             >Other</option>
         </select>
     </div>
 </div>
-
-<div class="form-group">
-    <label class="col-lg-2 control-label">Topics</label>
+<div class="form-group"><label class="col-lg-2 control-label">Topic<span class="required-star"> *</span></label>
     <div class="col-lg-10">
-    {{-- <select class="form-control" name="topic_id" required>
-        <option value="">--Select--</option>
-        @foreach($topics as $topic)
-        <option value="{{ $topic->id }}"
-            {{ (isset($trainer->topic_id) AND $topic->id == $trainer->topic_id)?'selected':old('topic_id') ==  $topic->id  ? 'selected' : '' }}>
-            {{ $topic->name }}
-        </option>
-        @endforeach
-        </select> --}}
-        <input value="{{ isset($trainer->topic_id) ? $topic->id:'' }}" name="topic_id" type="text" class="form-control">
+        <select class="form-control" name="topic_id" required>
 
+            <option value="">--Select--</option>
+
+            @foreach($topics as $topic)
+                <option value="{{ $topic->id }}"
+                    {{ (isset($trainer->topic_id) AND $topic->id == $trainer->topic_id)?'selected':old('topic_id') ==  $topic->id  ? 'selected' : '' }}>
+                    {{ $topic->name }}
+                </option>
+            @endforeach
+        </select>
     </div>
 </div>
 

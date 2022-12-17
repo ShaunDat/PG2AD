@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests\Trainee;
 
-use App\AllParent;
 use App\Trainee;
 use Illuminate\Foundation\Http\FormRequest;
 

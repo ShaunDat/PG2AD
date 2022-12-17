@@ -62,10 +62,6 @@
                 </li>
 
 
-                {{-- <li class="{{ (currentController() == 'UserController')? 'active':'' }}">
-                    <a href="{{ route('trainings.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">Training</span> </a>
-                </li> --}}
-
                 <li class="{{ (currentController() == 'UserController')? 'active':'' }}">
                     <a href="{{ route('users.index') }}"><i class="fa fa-user-secret" aria-hidden="true"></i> <span class="nav-label">User</span> </a>
                 </li>
