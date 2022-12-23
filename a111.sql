@@ -2,10 +2,10 @@
 -- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Dec 11, 2022 at 01:44 PM
--- Server version: 8.0.30
--- PHP Version: 8.1.10
+-- Host: 127.0.0.1
+-- Generation Time: Dec 23, 2022 at 02:24 PM
+-- Server version: 10.4.25-MariaDB
+-- PHP Version: 7.4.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `pg2db`
+-- Database: `a111`
 --
 
 -- --------------------------------------------------------
@@ -28,10 +28,10 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `attendances` (
-  `id` bigint UNSIGNED NOT NULL,
-  `trainer_id` bigint UNSIGNED NOT NULL,
-  `course_id` bigint UNSIGNED NOT NULL,
-  `trainee_id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `trainer_id` bigint(20) UNSIGNED NOT NULL,
+  `course_id` bigint(20) UNSIGNED NOT NULL,
+  `trainee_id` bigint(20) UNSIGNED NOT NULL,
   `attendance_date` date NOT NULL,
   `attendance_status` tinyint(1) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -41,14 +41,37 @@ CREATE TABLE `attendances` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `title` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `categories`
+--
+
+INSERT INTO `categories` (`id`, `title`, `description`, `created_at`, `updated_at`) VALUES
+(31, 'Computing', 'Computing', NULL, NULL),
+(32, 'Graphic Design', 'Graphic Design', NULL, NULL),
+(33, 'Business', 'Business', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `courses`
 --
 
 CREATE TABLE `courses` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `note` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo` text COLLATE utf8mb4_unicode_ci,
+  `photo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -67,9 +90,9 @@ INSERT INTO `courses` (`id`, `name`, `note`, `photo`, `created_at`, `updated_at`
 --
 
 CREATE TABLE `migrations` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `batch` int NOT NULL
+  `batch` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -84,7 +107,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (31, '2022_11_25_094749_create_trainees_table', 1),
 (32, '2022_11_25_101429_create_trainers_table', 1),
 (33, '2022_12_01_034645_create_courses_table', 1),
-(34, '2022_12_01_043029_create_topics_table', 2);
+(34, '2022_12_01_043029_create_topics_table', 2),
+(35, '2022_12_13_021148_create_categories_table', 3);
 
 -- --------------------------------------------------------
 
@@ -93,9 +117,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `model_has_permissions` (
-  `permission_id` int UNSIGNED NOT NULL,
+  `permission_id` int(10) UNSIGNED NOT NULL,
   `model_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint UNSIGNED NOT NULL
+  `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -105,9 +129,9 @@ CREATE TABLE `model_has_permissions` (
 --
 
 CREATE TABLE `model_has_roles` (
-  `role_id` int UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL,
   `model_type` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `model_id` bigint UNSIGNED NOT NULL
+  `model_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -116,9 +140,9 @@ CREATE TABLE `model_has_roles` (
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (2, 'App\\User', 1),
-(5, 'App\\User', 12),
 (3, 'App\\User', 13),
-(4, 'App\\User', 14);
+(4, 'App\\User', 14),
+(5, 'App\\User', 12);
 
 -- --------------------------------------------------------
 
@@ -146,7 +170,7 @@ INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
 --
 
 CREATE TABLE `permissions` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guard_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -181,7 +205,7 @@ INSERT INTO `permissions` (`id`, `name`, `guard_name`, `created_at`, `updated_at
 --
 
 CREATE TABLE `roles` (
-  `id` int UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `guard_name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -205,8 +229,8 @@ INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VAL
 --
 
 CREATE TABLE `role_has_permissions` (
-  `permission_id` int UNSIGNED NOT NULL,
-  `role_id` int UNSIGNED NOT NULL
+  `permission_id` int(10) UNSIGNED NOT NULL,
+  `role_id` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -218,31 +242,31 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (3, 2),
 (4, 2),
 (5, 2),
-(6, 2),
-(7, 2),
-(8, 2),
-(9, 2),
-(8, 3),
-(9, 3),
-(10, 3),
-(11, 3),
-(12, 3),
-(13, 3),
-(14, 3),
-(15, 3),
-(16, 3),
-(9, 4),
 (5, 5),
+(6, 2),
 (6, 5),
+(7, 2),
 (7, 5),
+(8, 2),
+(8, 3),
 (8, 5),
+(9, 2),
+(9, 3),
+(9, 4),
 (9, 5),
+(10, 3),
 (10, 5),
+(11, 3),
 (11, 5),
+(12, 3),
 (12, 5),
+(13, 3),
 (13, 5),
+(14, 3),
 (14, 5),
+(15, 3),
 (15, 5),
+(16, 3),
 (16, 5);
 
 -- --------------------------------------------------------
@@ -252,10 +276,10 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 --
 
 CREATE TABLE `topics` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `note` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `photo` text COLLATE utf8mb4_unicode_ci,
+  `photo` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -265,7 +289,21 @@ CREATE TABLE `topics` (
 --
 
 INSERT INTO `topics` (`id`, `name`, `note`, `photo`, `created_at`, `updated_at`) VALUES
-(1, 'IT', '123', NULL, NULL, NULL);
+(1, 'Programming', 'Programming', NULL, NULL, NULL),
+(9, 'Networking', 'Networking', NULL, NULL, NULL),
+(10, 'Professional Practice', 'Professional Practice', NULL, NULL, NULL),
+(11, 'Database Design & Development', 'Database Design & Development', NULL, NULL, NULL),
+(12, 'Security', 'Security', NULL, NULL, NULL),
+(13, 'Managing a Successful Computing Project', 'Managing a Successful Computing Project', NULL, NULL, NULL),
+(14, 'Software Development Life Cycle', 'Software Development Life Cycle', NULL, NULL, NULL),
+(15, 'Business Intelligence', 'Business Intelligence', NULL, NULL, NULL),
+(16, 'Cloud computing', 'Cloud computing', NULL, NULL, NULL),
+(17, 'Data Structures & Algorithms', 'Data Structures & Algorithms', NULL, NULL, NULL),
+(18, 'Advanced Programming', 'Advanced Programming', NULL, NULL, NULL),
+(19, 'Cloud computing', 'Cloud computing', NULL, NULL, NULL),
+(20, 'Internet of Things', 'Internet of Things', NULL, NULL, NULL),
+(21, 'Application DevelopmentCloud computing', 'Application Development', NULL, NULL, NULL),
+(22, 'Computing Research Project', 'Computing Research Project', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -274,9 +312,9 @@ INSERT INTO `topics` (`id`, `name`, `note`, `photo`, `created_at`, `updated_at`)
 --
 
 CREATE TABLE `trainees` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `course_id` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `course_id` int(11) NOT NULL,
   `roll_number` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `age` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -301,9 +339,9 @@ INSERT INTO `trainees` (`id`, `user_id`, `course_id`, `roll_number`, `phone`, `a
 --
 
 CREATE TABLE `trainers` (
-  `id` bigint UNSIGNED NOT NULL,
-  `user_id` bigint UNSIGNED NOT NULL,
-  `topic_id` int NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `topic_id` int(11) NOT NULL,
   `phone` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `gender` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `date_of_birth` date DEFAULT NULL,
@@ -326,7 +364,7 @@ INSERT INTO `trainers` (`id`, `user_id`, `topic_id`, `phone`, `gender`, `date_of
 --
 
 CREATE TABLE `users` (
-  `id` bigint UNSIGNED NOT NULL,
+  `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
@@ -354,6 +392,12 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- Indexes for table `attendances`
 --
 ALTER TABLE `attendances`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `categories`
+--
+ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -445,55 +489,61 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `attendances`
 --
 ALTER TABLE `attendances`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `topics`
 --
 ALTER TABLE `topics`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT for table `trainees`
 --
 ALTER TABLE `trainees`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `trainers`
 --
 ALTER TABLE `trainers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- Constraints for dumped tables
